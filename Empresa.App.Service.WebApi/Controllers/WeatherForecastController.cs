@@ -36,7 +36,7 @@ namespace ProyectoDocker.Controllers
         [HttpPost("ListDemo2")]
         public List<Cita> GetDemo2()
         {
-            //demo9
+            //demo10
             var list = new List<Cita>();
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
 

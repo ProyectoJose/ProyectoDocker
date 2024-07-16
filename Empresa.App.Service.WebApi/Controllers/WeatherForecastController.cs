@@ -73,5 +73,48 @@ namespace ProyectoDocker.Controllers
 
             return list;
         }
+
+        [HttpPost("ListDemo3")]
+        public List<Cita> GetDemo3()
+        {
+            //demo10
+            var list = new List<Cita>();
+            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+
+            builder.DataSource = "demo-sql-delete.cfqay6u8sikg.us-east-1.rds.amazonaws.com";
+            builder.UserID = "admin";
+            builder.Password = "Grupo1Utec";
+            builder.InitialCatalog = "DB_SALUD";
+            builder.TrustServerCertificate = true;
+            using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
+            {
+                Console.WriteLine("\nQuery data example:");
+                Console.WriteLine("=========================================\n");
+
+                connection.Open();
+
+                String sql = "SELECT institucion, numerodocumento FROM [dbo].[CITA]";
+
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var cita = new Cita()
+                            {
+                                Institucion = reader.GetString(0),
+                                Documento = reader.GetInt32(1)
+                            };
+                            list.Add(cita);
+                        }
+                    }
+                }
+            }
+
+            return list;
+        }
+
     }
 }
+

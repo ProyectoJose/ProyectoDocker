@@ -1,0 +1,39 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      dotnet: 8.0
+    commands:
+      - echo Installing Docker...
+      - apt-get update -y
+      - apt-get install -y docker.io
+      - nohup /usr/bin/dockerd > /dev/null 2>&1 &
+      - timeout 15 sh -c "until docker info; do echo .; sleep 1; done"
+      - echo Docker installed and started successfully
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 922651602674.dkr.ecr.us-east-1.amazonaws.com/testcontaineregistry1
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t testcontaineregistry1 -f Empresa.App.Service.WebApi/Dockerfile .
+      - docker tag testcontaineregistry1:latest 922651602674.dkr.ecr.us-east-1.amazonaws.com/testcontaineregistry1:latest
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker push 922651602674.dkr.ecr.us-east-1.amazonaws.com/testcontaineregistry1:latest
+      - echo Creating imagedefinitions.json file...
+      - printf '[{"name":"testcr","imageUri":"922651602674.dkr.ecr.us-east-1.amazonaws.com/testcontaineregistry1:latest"}]' > imagedefinitions.json
+
+artifacts:
+  files:
+    - '**/*'
+  secondary-artifacts:
+    imagedefinitions:
+      files:
+        - imagedefinitions.json

@@ -15,20 +15,20 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - aws --version
-      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 922651602674.dkr.ecr.us-east-1.amazonaws.com/testcontaineregistry1
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 654654589924.dkr.ecr.us-east-1.amazonaws.com/grupo1container
   build:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
       - docker build -t testcontaineregistry1 -f Empresa.App.Service.WebApi/Dockerfile .
-      - docker tag testcontaineregistry1:latest 922651602674.dkr.ecr.us-east-1.amazonaws.com/testcontaineregistry1:latest
+      - docker tag testcontaineregistry1:latest 654654589924.dkr.ecr.us-east-1.amazonaws.com/grupo1container:latest
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push 922651602674.dkr.ecr.us-east-1.amazonaws.com/testcontaineregistry1:latest
+      - docker push 654654589924.dkr.ecr.us-east-1.amazonaws.com/grupo1container:latest
       - echo Creating imagedefinitions.json file...
-      - printf '[{"name":"testcr","imageUri":"922651602674.dkr.ecr.us-east-1.amazonaws.com/testcontaineregistry1:latest"}]' > imagedefinitions.json
+      - printf '[{"name":"grupo1containersalud","imageUri":"654654589924.dkr.ecr.us-east-1.amazonaws.com/grupo1container:latest"}]' > imagedefinitions.json
 
 artifacts:
   files:

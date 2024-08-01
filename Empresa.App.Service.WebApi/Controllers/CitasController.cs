@@ -6,16 +6,16 @@ namespace ProyectoDocker.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class CitasController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<CitasController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public CitasController(ILogger<CitasController> logger)
         {
             _logger = logger;
         }
@@ -52,7 +52,7 @@ namespace ProyectoDocker.Controllers
 
                 connection.Open();
 
-                String sql = "SELECT institucion, numerodocumento FROM [dbo].[CITA]";
+                String sql = "SELECT TOP 1000 institucion, numerodocumento FROM [dbo].[CITA]";
 
                 using (SqlCommand command = new SqlCommand(sql, connection))
                 {
@@ -93,7 +93,7 @@ namespace ProyectoDocker.Controllers
 
                 connection.Open();
 
-                String sql = "SELECT institucion, numerodocumento FROM [dbo].[CITA]";
+                String sql = "SELECT TOP 1000 institucion, numerodocumento FROM [dbo].[CITA]";
 
                 using (SqlCommand command = new SqlCommand(sql, connection))
                 {

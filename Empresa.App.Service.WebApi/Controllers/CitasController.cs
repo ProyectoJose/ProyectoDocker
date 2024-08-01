@@ -33,8 +33,8 @@ namespace ProyectoDocker.Controllers
             .ToArray();
         }
 
-        [HttpPost("ListDemo2")]
-        public List<Cita> GetDemo2()
+        [HttpGet("ListCitas")]
+        public List<Cita> ListCitas()
         {
             //demo10
             var list = new List<Cita>();

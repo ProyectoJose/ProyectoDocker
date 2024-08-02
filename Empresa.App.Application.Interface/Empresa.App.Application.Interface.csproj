@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Infraestructure\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Empresa.App.Application.Dto\Empresa.App.Application.Dto.csproj" />
+    <ProjectReference Include="..\Empresa.App.Cross.Common\Empresa.App.Cross.Common.csproj" />
+    <ProjectReference Include="..\Empresa.App.Domain\Empresa.App.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

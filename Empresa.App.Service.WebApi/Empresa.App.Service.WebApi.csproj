@@ -14,4 +14,12 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Empresa.App.Application.Interface\Empresa.App.Application.Interface.csproj" />
+    <ProjectReference Include="..\Empresa.App.Application.UseCases\Empresa.App.Application.UseCases.csproj" />
+    <ProjectReference Include="..\Empresa.App.Cross.Common\Empresa.App.Cross.Common.csproj" />
+    <ProjectReference Include="..\Empresa.App.Infraestructure.Infraestructure\Empresa.App.Infraestructure.Infraestructure.csproj" />
+    <ProjectReference Include="..\Empresa.App.Infraestructure.Persistencia\Empresa.App.Infraestructure.Persistencia.csproj" />
+  </ItemGroup>
+
 </Project>
